@@ -26,44 +26,6 @@ If you want it **in strict Markdown** style with `$`, here’s your same content
 
 ---
 
-## Notations
-- $K$: Strike price  
-- $S$: Stock price  
-- $T$: Maturity, $\tau = T - t$: Time to maturity (years = days/365)  
-- $r$: Constant risk-free interest rate; $r_t$: Deterministic (time-varying) rate  
-- $\sigma$: Constant annualized volatility (standard deviation); $\sigma_t$: Deterministic volatility  
-- $\mathbb{P}^{\tilde{}}$: Risk-neutral measure; $\mathbb{P}$: Physical measure  
-- $p^{\tilde{}}(t, x; T, y)$: Transition density under $\mathbb{P}^{\tilde{}}$; $p(t, x; T, y)$: under $\mathbb{P}$
-
----
-
-# Project: Dynamic Leveraging Strategy using Ross Recovery Theorem
-
-## 1. Risk-Neutral Density (RND)
-
-### Basic Math
-
-Assume the Black-Scholes framework and spot price $S_0$. Then:
-
-1. **Call Price:**
-   $$
-   C(K) = e^{-(r - q)\tau} \, \mathbb{E}^{\tilde{}} \left[ (S_T - K)_+ \mid \mathcal{F}_t \right] = e^{-(r - q)\tau} \int_{-\infty}^{\infty} (y - K)_+ \, p^{\tilde{}}(t, S_0; T, y) \, dy
-   $$
-
-2. **First Derivative w.r.t. Strike:**
-   $$
-   \frac{\partial}{\partial K} C(K) = -e^{-(r - q)\tau} \, \mathbb{E}^{\tilde{}} \left[ \mathbb{I}_{\{ S_T > K \}} \mid \mathcal{F}_t \right] = -e^{-(r - q)\tau} \int_K^{\infty} p^{\tilde{}}(t, S_0; T, y) \, dy = -e^{-(r - q)\tau} \, \mathbb{P}^{\tilde{}}(S_T > K)
-   $$
-
-3. **Second Derivative (Breeden-Litzenberger):**
-   $$
-   \frac{\partial^2}{\partial K^2} C(K) = e^{-(r - q)\tau} \, p^{\tilde{}}(t, S_0; T, K)
-   $$
-   Thus, the risk-neutral density at strike $K$ is:
-   $$
-   p^{\tilde{}}(T, K) = e^{(r - q)\tau} \, \frac{\partial^2}{\partial K^2} C(K)
-   $$
-
 ---
 
 ✅ This is the true **Markdown + Math** style using **dollar signs**.
